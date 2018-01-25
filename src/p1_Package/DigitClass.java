@@ -69,9 +69,9 @@ public class DigitClass {
        }
 
      public boolean isZero()
-         // TODO finish this method
         {
-            return ( numDigits <=1 );
+            return ( ( numDigits <=1 )
+                    && ( digitArray[ 0 ] == 0 ) );
         }
 
     /**
@@ -97,7 +97,7 @@ public class DigitClass {
            {
             if( decValueToConvert == 0 ) // We only want to do this if we are not dividing by zero
                {
-                break;
+               return convertedDigitArray; // Return the uninitialized array
                }
             currentDigit = decValueToConvert % base;
             decValueToConvert /= base;
@@ -136,10 +136,15 @@ public class DigitClass {
      * @param digitArray the digitArray to have its value turned into a decimal.
      * @return The decimal value of the contents of the digitArray
      */
-       private int baseToDec( int[] digitArray )
+       private Integer baseToDec( int[] digitArray )
           {
             int convertedInt = 0;
             int currentDigit = 0;
+
+            if( overFlow ) // An overflowed value will mess with our conversion, so we want to stop it
+               {
+                return null;
+               }
 
             for( currentDigit = 0; currentDigit < numDigits; currentDigit++)
                {
