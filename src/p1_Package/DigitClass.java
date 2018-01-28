@@ -20,7 +20,7 @@ public class DigitClass {
      * @param maxDigitSet Sets the maximum number of digits digitArray can hold.
      * @param setBase Base decNumber is going to be converted to.
      */
-    public DigitClass(int decNumber, int maxDigitSet, int setBase)
+    public DigitClass( int setBase, int maxDigitSet, int decNumber )
         {
           //
           base = setBase;
@@ -30,6 +30,20 @@ public class DigitClass {
           digitArray = decToBase( decNumber ); // convert our base to decimal, store it in our digitArray
 
         }
+
+    /**
+     * Copy constructor for DigitClass
+     * @param digitToCopy the DigitClass who we want a copy of
+     */
+    public DigitClass( DigitClass digitToCopy )
+           {
+               this.base = digitToCopy.base;
+               this.digitArray = digitToCopy.digitArray;
+               this.numDigits = digitToCopy.numDigits;
+               this.overFlow = digitToCopy.overFlow;
+               this.numDigits = digitToCopy.numDigits;
+
+           }
 
     /**
      * The base our number is going to be stored in.
