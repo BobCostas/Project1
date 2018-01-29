@@ -42,6 +42,8 @@ public class DigitClass {
                this.numDigits = digitToCopy.numDigits;
                this.overFlow = digitToCopy.overFlow;
                this.numDigits = digitToCopy.numDigits;
+               this.maxDigits = digitToCopy.maxDigits;
+
 
            }
 
