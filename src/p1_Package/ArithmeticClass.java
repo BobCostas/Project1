@@ -27,28 +27,30 @@ public class ArithmeticClass {
           secondDigitCopyArray = secondDigitCopy.digitArray;
           base = firstDigitCopy.base;
 
-           firstDigitCopyDecValue = firstDigitCopy.getValueAsDecimal();
-           // initialize the DigitClass whose value we will return
-           DigitClass sumDigit = new DigitClass( firstDigitCopy.base, firstDigitCopy.maxDigits, firstDigitCopyDecValue);
            if( !checkSameBases( firstDigit, secondDigit ) )
               {
                 return null;
               }
 
-          sumDigit.initializeDigits();
-          sumDigitArray = sumDigit.digitArray;
 
           for( currentDigit = 0; currentDigit < maxDigits; currentDigit++)
              {
-                 int sum = firstDigitCopyArray[ currentDigit ] +
-                            secondDigitCopyArray[ currentDigit ];
-                 sumDigitArray[ currentDigit ] += carry;
-                 carry = firstDigitCopyArray[ currentDigit ] /
-                         secondDigitCopyArray[ currentDigit ];
-                 sumDigitArray[ currentDigit ] = carry + ( sum % base);
+                 int firstDigitArrayDigit = firstDigitCopyArray[ currentDigit ];
+                 int secondDigitArrayDigit = secondDigitCopyArray[ currentDigit ];
+                 firstDigitArrayDigit += carry;
+                 int sum = firstDigitArrayDigit +
+                            secondDigitArrayDigit;
+                 if( secondDigitArrayDigit > 0 )
+                    {
+//                     carry = firstDigitArrayDigit /
+//                               secondDigitArrayDigit;
+                     firstDigitCopyArray[ currentDigit ] =  firstDigitArrayDigit %
+                                                     secondDigitArrayDigit;
+                    }
+
                  carry = sum / base;
              }
-           return sumDigit;
+           return firstDigitCopy;
 
        }
 
