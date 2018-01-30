@@ -92,7 +92,7 @@ public class DigitClass {
 
      public boolean isZero()
         {
-            return ( ( numDigits <=1 )
+            return ( ( numDigits <= 1 )
                     && ( digitArray[ 0 ] == 0 ) );
         }
 
@@ -110,8 +110,10 @@ public class DigitClass {
         numDigits = 0; // reset our number of digits counter
         int digitCounter;
         int[] convertedDigitArray = new int[ maxDigits ];
+        final int MIN_BASE = 2;
+        final int MAX_BASE = 2;
 
-        if( ( base < 2 ) || ( base > 9 ) )
+        if( ( base < MIN_BASE ) || ( base > MAX_BASE ) )
            {
             return null;
            }
