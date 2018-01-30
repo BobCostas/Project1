@@ -70,11 +70,11 @@ public class ArithmeticClass {
                  return null;
                }
 
-           for( currentDigit = 0; currentDigit < firstDigit.maxDigits; currentDigit++ )
+           for( currentDigit = 0; currentDigit < firstDigit.numDigits; currentDigit++ )
               {
                  if( carry )
                     {
-                        firstDigitCopy.digitArray[ currentDigit ] += base - 1;
+                        firstDigitCopy.digitArray[ currentDigit ] -= base - 1;
                         carry = false;
                     }
 
@@ -82,12 +82,14 @@ public class ArithmeticClass {
                        firstDigitCopy.digitArray[ currentDigit ])
                     {
                       carry = true;
-                      firstDigitCopy.digitArray[ currentDigit ]++;
+                      firstDigitCopy.digitArray[ currentDigit ] += base;
                     }
                   difference = firstDigitCopy.digitArray[ currentDigit ] - secondDigitCopy.digitArray[ currentDigit ];
+                  firstDigitCopy.digitArray[ currentDigit ] -= difference;
                   differenceDigit.digitArray[ currentDigit ] = difference;
               }
 
+           differenceDigit.numDigits = currentDigit;
            return differenceDigit;
           }
 
