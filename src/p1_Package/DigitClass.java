@@ -110,7 +110,7 @@ public class DigitClass {
         int digitCounter;
         int[] convertedDigitArray = new int[ maxDigits ];
         final int MIN_BASE = 2;
-        final int MAX_BASE = 2;
+        final int MAX_BASE = 9;
 
         if( ( base < MIN_BASE ) || ( base > MAX_BASE ) )
            {
