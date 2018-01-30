@@ -158,7 +158,7 @@ public class DigitClass {
      * <p>
      * Converts digit stored in digitArray to a decimal value.
      * @param digitArray the digitArray to have its value turned into a decimal.
-     * @return The decimal value of the contents of the digitArray
+     * @return The decimal value of the contents of the digitArray, or null if there is overflow
      */
        private Integer baseToDec( int[] digitArray )
           {
