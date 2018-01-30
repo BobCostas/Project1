@@ -38,12 +38,18 @@ public class DigitClass {
     public DigitClass( DigitClass digitToCopy )
            {
                this.base = digitToCopy.base;
-               this.digitArray = digitToCopy.digitArray;
                this.numDigits = digitToCopy.numDigits;
                this.overFlow = digitToCopy.overFlow;
                this.numDigits = digitToCopy.numDigits;
                this.maxDigits = digitToCopy.maxDigits;
 
+               initializeDigits(); // zero out our array
+
+               int index;
+               for( index = 0; index < digitToCopy.numDigits; index++) // copy the array from digitToCopy to this
+                  {
+                    digitArray[ index ] = digitToCopy.digitArray[ index ];
+                  }
 
            }
 
@@ -89,6 +95,7 @@ public class DigitClass {
             return ( ( numDigits <=1 )
                     && ( digitArray[ 0 ] == 0 ) );
         }
+
 
     /**
      * Converts positive integer to base specified within the object.
