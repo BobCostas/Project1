@@ -120,6 +120,11 @@ public class ArithmeticClass {
 
               return product;
           }
+
+          DigitClass divideRegistersToRemainder( DigitClass firstDigit, DigitClass secondDigit )
+             {
+
+             }
     /**
      * Helper method for operations done on two different registers.
      * @param digitOne The first digit we are performing an operation on.
