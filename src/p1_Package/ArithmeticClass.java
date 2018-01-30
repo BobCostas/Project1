@@ -44,7 +44,52 @@ public class ArithmeticClass {
 
        }
 
+    /**
+     * Subtracts register two from register one, returns the difference
+     * <p>
+     *  Note: Registers are not modified within this method
+     *  <p>
+     * @param firstDigit Value to be subtracted from secondDigit
+     * @param secondDigit The second value, which is having firstDigit subtracted from it
+     * @return The positive difference between values, null if any failure occurred, including: 1) the bases
+     * are not the same or, 2. Register 2 is numerically greater than register one
+     */
        DigitClass subtractRegisters( DigitClass firstDigit, DigitClass secondDigit )
+          {
+            boolean carry = false;
+            int currentDigit = 0;
+            int base = firstDigit.base;
+            int difference = 0;
+            DigitClass firstDigitCopy = new DigitClass( firstDigit );
+            DigitClass secondDigitCopy = new DigitClass( secondDigit );
+            DigitClass differenceDigit = new DigitClass( firstDigit.base, firstDigit.maxDigits, 0 );
+
+            if( getMax( firstDigit.numDigits, secondDigit.numDigits ) == secondDigit.numDigits ||
+                 !checkSameBases( firstDigit, secondDigit ))
+               {
+                 return null;
+               }
+
+           for( currentDigit = 0; currentDigit < firstDigit.maxDigits; currentDigit++ )
+              {
+                 if( carry )
+                    {
+                        firstDigitCopy.digitArray[ currentDigit ] += base - 1;
+                        carry = false;
+                    }
+
+                 if( secondDigitCopy.digitArray[ currentDigit ] >
+                       firstDigitCopy.digitArray[ currentDigit ])
+                    {
+                      carry = true;
+                      firstDigitCopy.digitArray[ currentDigit ]++;
+                    }
+                  difference = firstDigitCopy.digitArray[ currentDigit ] - secondDigitCopy.digitArray[ currentDigit ];
+                  differenceDigit.digitArray[ currentDigit ] = difference;
+              }
+
+           return differenceDigit;
+          }
 
     /**
      * Helper method for operations done on two different registers.
