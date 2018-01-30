@@ -37,15 +37,18 @@ public class ArithmeticClass {
              {
                  int firstDigitArrayDigit = firstDigitCopyArray[ currentDigit ];
                  int secondDigitArrayDigit = secondDigitCopyArray[ currentDigit ];
-                 firstDigitArrayDigit += carry;
                  int sum = firstDigitArrayDigit +
                             secondDigitArrayDigit;
+                 firstDigitCopyArray[ currentDigit ] += carry;
                  if( secondDigitArrayDigit > 0 )
                     {
-//                     carry = firstDigitArrayDigit /
-//                               secondDigitArrayDigit;
-                     firstDigitCopyArray[ currentDigit ] =  firstDigitArrayDigit %
-                                                     secondDigitArrayDigit;
+                     firstDigitCopyArray[ currentDigit ] =  sum %
+                                                     base;
+                    }
+                 if( ( carry > 0 ) &&
+                     ( currentDigit >= firstDigitCopy.numDigits ) )
+                    {
+                     firstDigitCopy.numDigits++; // increment number of digits in the array
                     }
 
                  carry = sum / base;
