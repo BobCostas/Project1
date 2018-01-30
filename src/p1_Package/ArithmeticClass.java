@@ -95,6 +95,32 @@ public class ArithmeticClass {
           }
 
     /**
+     * Multiplies register one by register two, returns product.
+     * @param firstDigit The first digit to be multiplied
+     * @param secondDigit The second digit do be multiplied
+     * @return Product of two registers or null if the two registers are not the same base
+     */
+    public DigitClass multiplyRegisters( DigitClass firstDigit, DigitClass secondDigit )
+          {
+              int timesAdded = 0;
+
+              DigitClass firstDigitCopy = new DigitClass( firstDigit );
+              DigitClass secondDigitCopy = new DigitClass( secondDigit );
+              DigitClass product = new DigitClass(firstDigitCopy.base, firstDigitCopy.maxDigits, 0);
+
+              if( !checkSameBases( firstDigit, secondDigit ) )
+                 {
+                  return null;
+                 }
+
+              for( timesAdded = 0; timesAdded < secondDigitCopy.getValueAsDecimal(); timesAdded++ )
+                 {
+                   product = addRegisters( product, firstDigitCopy );
+                 }
+
+              return product;
+          }
+    /**
      * Helper method for operations done on two different registers.
      * @param digitOne The first digit we are performing an operation on.
      * @param digitTwo The second digit we are performing an operation on.
