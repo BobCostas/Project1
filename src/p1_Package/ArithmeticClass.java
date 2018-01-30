@@ -64,7 +64,8 @@ public class ArithmeticClass {
             DigitClass secondDigitCopy = new DigitClass( secondDigit );
             DigitClass differenceDigit = new DigitClass( firstDigit.base, firstDigit.maxDigits, 0 );
 
-            if( getMax( firstDigit.numDigits, secondDigit.numDigits ) == secondDigit.numDigits ||
+            if( getMax( firstDigitCopy.getValueAsDecimal(), secondDigitCopy.getValueAsDecimal() ) ==
+                    secondDigitCopy.getValueAsDecimal()  ||
                  !checkSameBases( firstDigit, secondDigit ))
                {
                  return null;
