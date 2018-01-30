@@ -37,13 +37,12 @@ public class DigitClass {
      */
     public DigitClass( DigitClass digitToCopy )
            {
-               this.base = digitToCopy.base;
-               this.numDigits = digitToCopy.numDigits;
-               this.overFlow = digitToCopy.overFlow;
-               this.numDigits = digitToCopy.numDigits;
-               this.maxDigits = digitToCopy.maxDigits;
+               base = digitToCopy.base;
+               overFlow = digitToCopy.overFlow;
+               numDigits = digitToCopy.numDigits;
+               maxDigits = digitToCopy.maxDigits;
 
-               initializeDigits(); // zero out our array
+                digitArray = new int[ maxDigits ];
 
                int index;
                for( index = 0; index < digitToCopy.numDigits; index++) // copy the array from digitToCopy to this
