@@ -11,20 +11,15 @@ public class ArithmeticClass {
     public DigitClass addRegisters( DigitClass firstDigit, DigitClass secondDigit )
        {
            int currentDigit = 0;
-           int maxDigits = firstDigit.maxDigits;
+           int maxDigits = getMax( firstDigit.maxDigits, secondDigit.maxDigits );
            int carry = 0;
-           boolean overflow = false;
            int base = 0;
-           int[] sumDigitArray;
-           int[] firstDigitCopyArray;
-           int[] secondDigitCopyArray;
-           int firstDigitCopyDecValue = 0;
 
            DigitClass firstDigitCopy = new DigitClass( firstDigit );
            DigitClass secondDigitCopy = new DigitClass( secondDigit );
+           DigitClass sumDigit = new DigitClass( firstDigitCopy.base, firstDigitCopy.maxDigits, 0 );
 
-          firstDigitCopyArray = firstDigitCopy.digitArray;
-          secondDigitCopyArray = secondDigitCopy.digitArray;
+
           base = firstDigitCopy.base;
 
            if( !checkSameBases( firstDigit, secondDigit ) )
@@ -35,27 +30,21 @@ public class ArithmeticClass {
 
           for( currentDigit = 0; currentDigit < maxDigits; currentDigit++)
              {
-                 int firstDigitArrayDigit = firstDigitCopyArray[ currentDigit ];
-                 int secondDigitArrayDigit = secondDigitCopyArray[ currentDigit ];
-                 int sum = firstDigitArrayDigit +
-                            secondDigitArrayDigit;
-                 firstDigitCopyArray[ currentDigit ] += carry;
-                 if( secondDigitArrayDigit > 0 )
-                    {
-                     firstDigitCopyArray[ currentDigit ] =  sum %
-                                                     base;
-                    }
-                 if( ( carry > 0 ) &&
-                     ( currentDigit >= firstDigitCopy.numDigits ) )
-                    {
-                     firstDigitCopy.numDigits++; // increment number of digits in the array
-                    }
+                 int sum = carry + firstDigitCopy.digitArray[ currentDigit ] +
+                     secondDigitCopy.digitArray[ currentDigit ];
+
+
+                 sumDigit.digitArray[ currentDigit ] = sum % base;
 
                  carry = sum / base;
+
              }
-           return firstDigitCopy;
+           sumDigit.numDigits = currentDigit;
+           return sumDigit;
 
        }
+
+       DigitClass subtractRegisters( DigitClass firstDigit, DigitClass secondDigit )
 
     /**
      * Helper method for operations done on two different registers.
@@ -69,4 +58,14 @@ public class ArithmeticClass {
           }
 
 
+    /**
+     * Finds biggest of two integers.
+     * @param valOne The value to be compared to valTwo.
+     * @param valTwo The value to be compared to valOne.
+     * @return The bigger of the two values.
+     */
+    int getMax(int valOne, int valTwo)
+       {
+            return valOne > valTwo ? valOne : valTwo;
+       }
 }
